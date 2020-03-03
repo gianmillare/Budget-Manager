@@ -9,6 +9,14 @@ expenditure = {}
 def add_budget(name, amount):
     global available
 
+    # Make a function that will return an error if the same budget is used twice
+    if name in budgets:
+        raise ValueError("Budget Exists! Please choose another!")
+
+    # Make another function that will return an error if the amount of the budget exceeds the available.
+    if amount > available:
+        raise ValueError("Insufficient Funds")
+
     budgets[name] = amount
     available -= amount
     expenditure[name] = 0
