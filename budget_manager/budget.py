@@ -32,3 +32,11 @@ def spend(name, amount):
     budgeted = budgets[name]
     spent = expenditure[name]
     return budgeted - spent
+
+# Create a function that will print out a summary of your budget, expenses, and avaialble balance
+def print_summary():
+    for name in budgets:
+        budgeted = budgets[name]
+        spent = expenditure[name]
+        remaining = budgeted - spent
+        print(name, budgeted, spent, remaining)
