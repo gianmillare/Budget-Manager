@@ -35,8 +35,30 @@ def spend(name, amount):
 
 # Create a function that will print out a summary of your budget, expenses, and avaialble balance
 def print_summary():
+    # Create a format table to make the summary easier to read
+    print("Budget              Budgeted   Spent Remaining")
+    print("---------------------------------------------------------")
+
+    # Create a "totals" variable for a footer section in the summary
+    total_budgeted = 0
+    total_spent = 0
+    total_remaining = 0
+    
     for name in budgets:
         budgeted = budgets[name]
         spent = expenditure[name]
         remaining = budgeted - spent
-        print(name, budgeted, spent, remaining)
+
+        # Start formatting the summary to be easier to read
+        print(f'{name:15s} {budgeted:10.2f} {spent:10.2f} {remaining:10.2f}')
+
+        # Add the amounts to the totals before this function
+        total_budgeted += budgeted
+        total_spent += spent
+        total_remaining += remaining
+
+    # Create the Footer
+    print("---------------------------------------------------------")
+    print(f'{"Total":15s} {total_budgeted:10.2f} {total_spent:10.2f} {total_budgeted - total_spent:10.2f}')
+    
+
