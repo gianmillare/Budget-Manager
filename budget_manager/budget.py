@@ -20,7 +20,7 @@ class BudgetManager:
 
         self.budgets[name] = amount
         self.available -= amount
-        self.expenditure[name] = 0
+        self.expenditure[name] = []
         return self.available
 
     # Create a function that will enable a user to change a budget
@@ -38,11 +38,11 @@ class BudgetManager:
     def spend(self, name, amount):
         if name not in self.expenditure:
             raise ValueError("No Such Budget")
-        self.expenditure[name] += amount
+        self.expenditure[name].append(amount)
 
         # Track the amount left in the budget
         budgeted = self.budgets[name]
-        spent = self.expenditure[name]
+        spent = sum(self.expenditure[name])
         return budgeted - spent
 
     # Create a function that will print out a summary of your budget, expenses, and avaialble balance
@@ -58,7 +58,7 @@ class BudgetManager:
         
         for name in self.budgets:
             budgeted = self.budgets[name]
-            spent = self.expenditure[name]
+            spent = sum(self.expenditure[name])
             remaining = budgeted - spent
 
             # Start formatting the summary to be easier to read
