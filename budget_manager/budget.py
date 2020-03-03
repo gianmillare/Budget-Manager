@@ -22,3 +22,13 @@ def add_budget(name, amount):
     expenditure[name] = 0
     return available
     
+# Create a spending function that will track how much you've spent
+def spend(name, amount):
+    if name not in expenditure:
+        raise ValueError("No Such Budget")
+    expenditure[name] += amount
+
+    # Track the amount left in the budget
+    budgeted = budgets[name]
+    spent = expenditure[name]
+    return budgeted - spent
