@@ -22,6 +22,17 @@ class BudgetManager:
         self.available -= amount
         self.expenditure[name] = 0
         return self.available
+
+    # Create a function that will enable a user to change a budget
+    def change_budget(self, name, new_amount):
+        if name not in self.budgets:
+            raise ValueError("Budget does not exist!")
+        old_amount = self.budgets[name]
+        if new_amount > old_amount + self.available:
+            raise ValueError("Insufficient Funds")
+        self.budgets[name] = new_amount
+        self.available -= new_amount - old_amount
+        return self.available
         
     # Create a spending function that will track how much you've spent
     def spend(self, name, amount):
